@@ -22,7 +22,21 @@
     <h2>Ol Sonf Vorsg</h2>
     <p><strong>English</strong>: "I reign over you, saith the God of Justice..."</p>
     <p><strong>Qiskit Circuit</strong>: H-X-Z-H-X (5 qubits)</p>
-    <canvas id="enochian-mandala" width="400" height="400"></canvas>
+    <canvas id="enochian-mandala" width="400" height="400"></canvas><div style="text-align:center; margin:20px;">
+  <label>Frequency: <span id="freq">432</span> Hz</label><br>
+  <input type="range" min="40" max="432" value="432" id="freq-slider" style="width:300px;">
+</div>
+
+<script>
+  const slider = document.getElementById('freq-slider');
+  const freqDisplay = document.getElementById('freq');
+  slider.oninput = () => {
+    freqDisplay.textContent = slider.value;
+    if (playing) {
+      osc.freq(slider.value);
+    }
+  };
+</script>
 
     <p><em>Click to activate 432Hz tone.</em></p>
 
