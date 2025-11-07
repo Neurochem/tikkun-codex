@@ -9,7 +9,7 @@
     h1 { color:#ff4500; }
     nav a { color:#ff4500; font-weight:bold; margin:10px; }
     img { max-width:100%; border:2px solid #ff4500; margin:20px auto; display:block; }
-    #enochian-mandala { margin:20px auto; }
+    button { padding:10px 20px; background:#ff4500; color:#000; border:none; cursor:pointer; margin:10px; }
   </style>
 </head>
 <body>
@@ -28,7 +28,8 @@
 
   <!-- AUDIO CONTROL -->
   <div style="margin:20px;">
-    <button id="sound-button" style="padding:10px 20px; background:#ff4500; color:#000; border:none; cursor:pointer;">Start Sound</button><br>
+    <button id="activate-button">Click to Activate Sound</button><br>
+    <button id="sound-button" style="display:none;">Start Sound</button><br>
     <label>Frequency: <span id="freq">432</span> Hz</label><br>
     <input type="range" min="40" max="432" value="432" id="freq-slider" style="width:300px;">
   </div>
@@ -38,9 +39,41 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js"></script>
   <script>
     let osc, playing = false;
-    let button = document.getElementById('sound-button');
+    let activated = false;
+    let activateBtn = document.getElementById('activate-button');
+    let soundBtn = document.getElementById('sound-button');
     let slider = document.getElementById('freq-slider');
     let freqDisplay = document.getElementById('freq');
+
+    activateBtn.onclick = () => {
+      if (!activated) {
+        getAudioContext().resume().then(() => {
+          activated = true;
+          activateBtn.style.display = 'none';
+          soundBtn.style.display = 'inline-block';
+        });
+      }
+    };
+
+    soundBtn.onclick = () => {
+      if (!playing) {
+        osc = new p5.Oscillator('sine');
+        osc.freq(parseFloat(slider.value));
+        osc.amp(0.3);
+        osc.start();
+        playing = true;
+        soundBtn.textContent = "Stop Sound";
+      } else {
+        osc.stop();
+        playing = false;
+        soundBtn.textContent = "Start Sound";
+      }
+    };
+
+    slider.oninput = () => {
+      freqDisplay.textContent = slider.value;
+      if (playing) osc.freq(parseFloat(slider.value));
+    };
 
     function setup() {
       let canvas = createCanvas(400, 400);
@@ -65,26 +98,6 @@
         pop();
       }
     }
-
-    button.onclick = () => {
-      if (!playing) {
-        osc = new p5.Oscillator('sine');
-        osc.freq(parseFloat(slider.value));
-        osc.amp(0.3);
-        osc.start();
-        playing = true;
-        button.textContent = "Stop Sound";
-      } else {
-        osc.stop();
-        playing = false;
-        button.textContent = "Start Sound";
-      }
-    };
-
-    slider.oninput = () => {
-      freqDisplay.textContent = slider.value;
-      if (playing) osc.freq(parseFloat(slider.value));
-    };
   </script>
 </body>
 </html>
