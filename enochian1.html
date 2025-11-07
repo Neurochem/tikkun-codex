@@ -1,50 +1,83 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js"></script>
-<script>
-  let osc, playing = false;
-  function setup() {
-    let canvas = createCanvas(400, 400);
-    canvas.parent('enochian-mandala');
-  }
-  function draw() {
-    background(0);
-    translate(200, 200);
-    stroke(255, 165, 0);
-    noFill();
-    for (let i = 0; i < 18; i++) {
-      push();
-      rotate(i * 20 + frameCount * 0.01);
-      beginShape();
-      for (let a = 0; a < 360; a += 10) {
-        let r = 100 + sin(a * 5) * 30;
-        vertex(r * cos(a), r * sin(a));
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enochian Key 1</title>
+  <style>
+    body { background:#000; color:#fff; font-family:'Times New Roman'; text-align:center; padding:20px; }
+    h1 { color:#ff4500; }
+    nav a { color:#ff4500; font-weight:bold; margin:10px; }
+    img { max-width:100%; border:2px solid #ff4500; margin:20px auto; display:block; }
+    #enochian-mandala { margin:20px auto; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a> | 
+    <a href="https://cosmicmike2.gumroad.com/l/bzfshe">Volume 1 ($29)</a>
+  </nav>
+
+  <h1>Enochian Key 1</h1>
+
+  <!-- GOLD PULSING SIGIL -->
+  <img src="enochian-key1.gif" alt="Enochian Key 1 Sigil">
+
+  <!-- INTERACTIVE CANVAS -->
+  <div id="enochian-mandala"></div>
+
+  <!-- FREQUENCY SLIDER -->
+  <div style="margin:20px;">
+    <label>Frequency: <span id="freq">432</span> Hz</label><br>
+    <input type="range" min="40" max="432" value="432" id="freq-slider" style="width:300px;">
+  </div>
+
+  <!-- p5.js + Sound -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js"></script>
+  <script>
+    let osc, playing = false;
+    function setup() {
+      let canvas = createCanvas(400, 400);
+      canvas.parent('enochian-mandala');
+      background(0);
+    }
+    function draw() {
+      background(0);
+      translate(200, 200);
+      stroke(255, 165, 0);
+      noFill();
+      for (let i = 0; i < 18; i++) {
+        push();
+        rotate(i * 20 + frameCount * 0.01);
+        beginShape();
+        for (let a = 0; a < 360; a += 10) {
+          let r = 100 + sin(a * 5) * 30;
+          vertex(r * cos(a), r * sin(a));
+        }
+        endShape(CLOSE);
+        pop();
       }
-      endShape(CLOSE);
-      pop();
     }
-  }
-  function mousePressed() {
-    if (!playing) {
-      osc = new p5.Oscillator('sine');
-      osc.freq(432);
-      osc.amp(0.3);
-      osc.start();
-      playing = true;
-    } else {
-      osc.stop();
-      playing = false;
+    function mousePressed() {
+      if (!playing) {
+        osc = new p5.Oscillator('sine');
+        osc.freq(432);
+        osc.amp(0.3);
+        osc.start();
+        playing = true;
+      } else {
+        osc.stop();
+        playing = false;
+      }
     }
-  }
-</script>
-<div style="text-align:center; margin:20px;">
-  <label>Frequency: <span id="freq">432</span> Hz</label><br>
-  <input type="range" min="40" max="432" value="432" id="freq-slider" style="width:300px;">
-</div>
-<script>
-  const slider = document.getElementById('freq-slider');
-  const freqDisplay = document.getElementById('freq');
-  slider.oninput = () => {
-    freqDisplay.textContent = slider.value;
-    if (playing) osc.freq(slider.value);
-  };
-</script>
+    // Slider
+    const slider = document.getElementById('freq-slider');
+    const freqDisplay = document.getElementById('freq');
+    slider.oninput = () => {
+      freqDisplay.textContent = slider.value;
+      if (playing) osc.freq(slider.value);
+    };
+  </script>
+</body>
+</html>
