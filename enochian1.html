@@ -26,8 +26,9 @@
   <!-- INTERACTIVE CANVAS -->
   <div id="enochian-mandala"></div>
 
-  <!-- FREQUENCY SLIDER -->
+  <!-- AUDIO CONTROL -->
   <div style="margin:20px;">
+    <button id="sound-button" style="padding:10px 20px; background:#ff4500; color:#000; border:none; cursor:pointer;">Start Sound</button><br>
     <label>Frequency: <span id="freq">432</span> Hz</label><br>
     <input type="range" min="40" max="432" value="432" id="freq-slider" style="width:300px;">
   </div>
@@ -37,11 +38,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js"></script>
   <script>
     let osc, playing = false;
+    let button = document.getElementById('sound-button');
+    let slider = document.getElementById('freq-slider');
+    let freqDisplay = document.getElementById('freq');
+
     function setup() {
       let canvas = createCanvas(400, 400);
       canvas.parent('enochian-mandala');
       background(0);
     }
+
     function draw() {
       background(0);
       translate(200, 200);
@@ -59,24 +65,25 @@
         pop();
       }
     }
-    function mousePressed() {
+
+    button.onclick = () => {
       if (!playing) {
         osc = new p5.Oscillator('sine');
-        osc.freq(432);
+        osc.freq(parseFloat(slider.value));
         osc.amp(0.3);
         osc.start();
         playing = true;
+        button.textContent = "Stop Sound";
       } else {
         osc.stop();
         playing = false;
+        button.textContent = "Start Sound";
       }
-    }
-    // Slider
-    const slider = document.getElementById('freq-slider');
-    const freqDisplay = document.getElementById('freq');
+    };
+
     slider.oninput = () => {
       freqDisplay.textContent = slider.value;
-      if (playing) osc.freq(slider.value);
+      if (playing) osc.freq(parseFloat(slider.value));
     };
   </script>
 </body>
