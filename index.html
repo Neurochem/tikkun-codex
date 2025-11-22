@@ -3,97 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tikkun Codex</title>
+  <title>The Threshold of the Codex</title>
   <style>
     body { 
-      font-family: 'Times New Roman', serif; 
+      margin: 0;
       background: #000; 
-      color: #fff; 
+      color: #ff4500; 
+      font-family: 'Times New Roman', serif; 
       text-align: center; 
-      padding: 40px; 
-      margin: 0; 
+      padding: 60px 20px; 
+      line-height: 1.8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    h1 { 
-      color: #ff4500; 
-      font-size: 2.5em; 
-    }
-    p { 
-      font-size: 1.2em; 
-    }
-    a { 
-      color: #ff4500; 
-      text-decoration: none; 
-      font-weight: bold; 
-      margin: 0 8px;
-    }
-    .welcome { 
-      max-width: 600px; 
-      margin: 0 auto; 
-      padding: 20px; 
-      background: rgba(0,0,0,0.7); 
-      border-radius: 8px; 
-    }
-  </style>
-
-  <!-- RESPONSIVE MAGIC — THIS IS THE NEW CODE -->
-  <style>
-    @media (max-width: 768px) {
-      h1 { font-size: 2em; }
-      p { font-size: 1em; }
-      canvas { width: 100% !important; height: auto !important; }
-      .welcome { padding: 15px; }
-      nav a { display: block; margin: 10px 0; }
-    }
-    canvas { max-width: 100%; height: auto; }
+    h1 { font-size: 2.6em; margin-bottom: 40px; }
+    p { max-width: 740px; margin: 24px auto; font-size: 1.2em; }
+    .warning { color: #ff6b6b; font-weight: bold; margin: 50px 0; }
+    footer { margin-top: 80px; font-size: 0.9em; color: #aaa; }
   </style>
 </head>
-<body><a href="threshold.html" style="color:#ff4500; font-size:1.3em; display:block; margin:40px;">🜂 Enter the Threshold</a>
-  <h1>Tikkun Codex</h1>
-  <div class="welcome">
-    <p>
-      <a href="matrix.html">Preview the Matrix</a> | 
-      <a href="chapter1.html">Chapter 1</a> | 
-      <a href="chapter0.html">Abramelin Intro</a> | 
-      <a href="enochian1.html">Enochian Key 1</a> | 
-      <a href="abramelin.html">Abramelin HGA Rite</a> | 
-      <a href="goetia.html">Goetia Binding</a> | 
-      <a href="https://cosmicmike2.gumroad.com/l/bzfshe">Get Volume 1 ($29)</a>
-    </p>
-  </div>
+<body>
+  <h1>🜂 The Threshold of the Codex</h1>
+  <p>Before you enter, pause.</p>
+  <p>This is not a book. It is a living archive— a vessel of devotion, a mirror of mystery, a scaffold of silence and flame.</p>
+  <p>The Codex you are about to encounter is not intended for children, nor for the hurried. It speaks in symbols, echoes, and archetypes that may stir what sleeps beneath the surface. It is not entertainment. It is invocation.</p>
+  <p class="warning">Age Restriction: This work is reserved for mature initiates— those who have tasted paradox, who know that truth wears many masks, and who approach the unknown with reverence, not conquest.</p>
+  <p>Creative Classification: This Codex is an artistic impression, a culmination of life lived in study, suffering, and sacred joy. It is not a doctrine, but a dream. Not a map, but a myth. Not a conclusion, but a question.</p>
+  <p>Ancestral Gratitude: Every word, every image, every silence is offered in honor of those whose lives made this one possible. This is a work of remembrance, a gesture of gratitude to the unseen hands that shaped the soil of being.</p>
+  <p>If you are ready to read with your whole being— not just your eyes, but your breath, your bones, your memory— then step forward.</p>
 
-  <div style="text-align: center; margin: 30px 0;">
-    <canvas id="home-matrix" width="400" height="120"></canvas>
-    <p style="font-size: 0.9em; color: #aaa;">The 216-Letter Quantum Oracle</p>
-  </div>
-
-  <script>
-    const canvas = document.getElementById('home-matrix');
-    const ctx = canvas.getContext('2d');
-    let angle = 0;
-
-    function draw() {
-      ctx.fillStyle = '#000';
-      ctx.fillRect(0, 0, 400, 120);
-      ctx.strokeStyle = '#ff4500';
-      ctx.lineWidth = 1;
-
-      for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 24; j++) {
-          let x = j * 16 + 8;
-          let y = i * 13 + 8;
-          ctx.beginPath();
-          ctx.arc(x, y, 3 + Math.sin(angle + i * j) * 1, 0, Math.PI * 2);
-          ctx.stroke();
-        }
-      }
-      angle += 0.02;
-      requestAnimationFrame(draw);
-    }
-    draw();
-  </script>
-
-  <p style="text-align: center; font-size: 0.8em; color: #aaa; margin-top: 40px;">
-    © 2025 Michael Joyce. All Rights Reserved.
+  <p>
+    <a href="https://cosmiccodex216.gumroad.com/l/tikkunvault" 
+       style="background:#ff4500; color:#000; padding:1.6em 3.4em; font-size:1.8em; 
+              text-decoration:none; display:inline-block; margin:3em auto; 
+              font-weight:bold; border:3px solid #000; box-shadow: 0 0 20px #ff4500;">
+      The Codex awaits — $216<br>
+      <small style="font-size:0.7em; color:#fff; font-weight:normal;">
+        Opens 1 January 2026 • Closes forever at 2,160 seats
+      </small>
+    </a>
   </p>
+
+  <footer>© 2025 Michael Joyce. All Rights Reserved. Tikkun Codex 216™</footer>
 </body>
 </html>

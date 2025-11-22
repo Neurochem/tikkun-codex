@@ -1,0 +1,24 @@
+[
+  {
+    "name": "MOREHORIRERINIRERIROROM",
+    "purpose": "To Know Things Past",
+    "grid": [
+      ["M","O","R","E","H"],
+      ["O","R","E","H","O"],
+      ["R","E","H","O","R"],
+      ["E","H","O","R","E"],
+      ["H","O","R","E","M"]
+    ]
+  },
+  {
+    "name": "NABHIADA IH BARABHIADA IHBA N",
+    "purpose": "To Know Future Things",
+    "grid": [
+      ["N","A","B","H","I"],
+      ["A","B","H","I","A"],
+      ["B","H","I","A","D"],
+      ["H","I","A","D","A"],
+      ["I","A","D","A","I"]
+    ]
+  }
+]

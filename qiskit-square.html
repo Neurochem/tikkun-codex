@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Qiskit Square Viewer</title>
+  <style>
+    body { background:#000; color:#fff; text-align:center; padding:20px; }
+    h1 { color:#ff4500; }
+    pre { background:#111; padding:10px; border:1px solid #ff4500; }
+    nav a { color:#ff4500; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a> | <a href="https://cosmicmike2.gumroad.com/l/bzfshe">Volume 1 ($29)</a>
+  </nav>
+  <h1>Qiskit Square Viewer</h1>
+  <input id="square" placeholder="MAIAM" style="padding:10px; font-size:1.2em;">
+  <button onclick="view()" style="padding:10px 20px;">View Circuit</button>
+  <div id="circuit"></div>
+
+  <script>
+    function view() {
+      let sq = document.getElementById('square').value.toUpperCase();
+      let code = 'qc = QuantumCircuit(5)\n';
+      for (let i = 0; i < sq.length; i++) {
+        code += `qc.h(${i % 5}); qc.x(${i % 5});\n`;
+      }
+      document.getElementById('circuit').innerHTML = `<pre>${code}</pre>`;
+    }
+  </script>
+</body>
+</html>
