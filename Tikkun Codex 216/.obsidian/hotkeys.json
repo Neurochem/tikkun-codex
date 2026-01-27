@@ -1,0 +1,11 @@
+{
+  "theme:toggle-light-dark": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "L"
+    }
+  ]
+}
